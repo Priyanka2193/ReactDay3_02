@@ -1,13 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
 
 import "./styles.css";
 
 function App() {
+  const [items, setItems] = useState([]);
+  function addItem() {
+    setItems([
+      ...items,
+      {
+        id: items.length,
+        value: Math.random() * 100
+      }
+    ]);
+  }
+
   return (
     <div className="App">
-      <h1>Hello CodeSandbox</h1>
-      <h2>Start editing to see some magic happen!</h2>
+      <button onClick={addItem}>Add a number </button>
+      <ul>
+        {items.map(item => (
+          <li key={item.id}>{item.value}</li>
+        ))}
+      </ul>
     </div>
   );
 }
